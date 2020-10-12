@@ -24,10 +24,10 @@ import launch_ros.actions
 
 def generate_launch_description():
 
-    tf_ai_tracker_launch = os.path.join(get_package_share_directory('tf_ai_tracker'), 'launch', 'oa_target_tracker.launch.py')
+    controller_launch = os.path.join(get_package_share_directory('robot_tracking_controller'), 'launch', 'oa_target_tracker.launch.py')
     
-    tf_ai_tracker_pkg = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(tf_ai_tracker_launch)
+    controller_pkg = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(controller_launch)
     )
     
     # Static TF publisher
@@ -47,7 +47,7 @@ def generate_launch_description():
     ld = LaunchDescription()
 
     # Declare the launch options
-    ld.add_action(tf_ai_tracker_pkg)
+    ld.add_action(controller_pkg)
     ld.add_action(static_tf_camera_world)
     ld.add_action(static_tf_camera_baselink)
     ld.add_action(static_tf_baselink_basefootprint)
